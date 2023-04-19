@@ -17,11 +17,10 @@ create TABLE IF NOT EXISTS client
 
 create TABLE IF NOT EXISTS project
 (
-    id int auto_increment,
-    client_id int FOREIGN KEY REFERENCES client(id),
+    id int auto_increment PRIMARY KEY,
+    client_id int,
     start_date date,
     finish_date date CHECK (finish_date >= start_date),
-    PRIMARY KEY(id)
     FOREIGN KEY(client_id) REFERENCES client(id)
 );
 

@@ -1,6 +1,12 @@
-SELECT project.name AS name, sum(worker.salary * (project.finish_date - start_date)) AS price
-FROM project
-JOIN project_worker ON project.client_id = client.name
-JOIN project_worker ON project_worker.worker_id = worker.salary
-GROUP BY project_worker.project_id
+SELECT pw.project_id,
+SUM(TIMESTAMPDIFF(MONTH, p.start_date, p.finish_date) * w.salary) AS price
+FROM project_worker pw
+LEFT JOIN worker w ON pw.worker_id = w.id
+LEFT JOIN project p ON pw.project_id = p.id
+GROUP BY pw.project_id
 ORDER BY price DESC;
+
+
+
+
+
