@@ -20,7 +20,8 @@ create TABLE IF NOT EXISTS project
     id int auto_increment PRIMARY KEY,
     client_id int,
     start_date date,
-    finish_date date CHECK (finish_date >= start_date),
+    finish_date date,
+    CHECK (finish_date >= start_date),
     FOREIGN KEY(client_id) REFERENCES client(id)
 );
 
